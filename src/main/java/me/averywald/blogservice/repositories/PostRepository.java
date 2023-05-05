@@ -10,11 +10,14 @@ import me.averywald.blogservice.models.Post;
 
 public interface PostRepository extends MongoRepository<Post, String> {
     
-    @Query("{ title: '?' }")
+    @Query("{ title: ?0 }")
     Post getPostByTitle(String title);
 
     @Query("{}")
     List<PostDTO> getPostList();
+
+    @Query("{ author: ?0 }")
+    List<PostDTO> getPostsByAuthor(String author);
 
     // TODO: more queries
 
